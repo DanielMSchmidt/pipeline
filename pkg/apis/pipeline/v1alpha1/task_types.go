@@ -67,6 +67,7 @@ type Step = v1beta1.Step
 type Sidecar = v1beta1.Sidecar
 
 // +genclient
+// +k8s:openapi-gen=true
 // +genclient:noStatus
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 

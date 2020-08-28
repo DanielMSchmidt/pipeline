@@ -90,3 +90,8 @@ if [ "${GENS}" = "all" ] || grep -qw "informer" <<<"${GENS}"; then
            --output-package "${OUTPUT_PKG}/informers" \
            "$@"
 fi
+
+if [ "${GENS}" = "all" ] || grep -qw "openapi" <<<"${GENS}"; then
+  echo "Generating openapi spec for ${GROUPS_WITH_VERSIONS} at ${OUTPUT_PKG}/openapi"
+  "${PREFIX}/openapi-gen" --input-dirs "$(codegen::join , "${FQ_APIS[@]}")" --output-package "${OUTPUT_PKG}/openapi" "$@"
+fi

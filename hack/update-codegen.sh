@@ -32,7 +32,7 @@ GOFLAGS="-mod=vendor"
 # This is separate from the pipeline package as resource are staying in v1alpha1 and they
 # need to be separated (at least in terms of go package) from the pipeline's packages to
 # not having dependency cycle.
-bash ${REPO_ROOT_DIR}/hack/generate-groups.sh "deepcopy,client,informer,lister" \
+bash ${REPO_ROOT_DIR}/hack/generate-groups.sh "deepcopy,client,informer,lister,openapi" \
   github.com/tektoncd/pipeline/pkg/client/resource github.com/tektoncd/pipeline/pkg/apis \
   "resource:v1alpha1" \
   --go-header-file ${REPO_ROOT_DIR}/hack/boilerplate/boilerplate.go.txt

@@ -133,6 +133,7 @@ type RunStatusFields struct {
 }
 
 // +genclient
+// +k8s:openapi-gen=true
 // +genreconciler
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 

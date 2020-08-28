@@ -38,6 +38,7 @@ var (
 )
 
 // +genclient
+// +k8s:openapi-gen=true
 // +genreconciler:krshapedlogic=false
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 

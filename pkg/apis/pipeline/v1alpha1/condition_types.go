@@ -24,6 +24,7 @@ import (
 
 // +genclient
 // +genclient:noStatus
+// +k8s:openapi-gen=true
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
 // Condition declares a step that is used to gate the execution of a Task in a Pipeline.
