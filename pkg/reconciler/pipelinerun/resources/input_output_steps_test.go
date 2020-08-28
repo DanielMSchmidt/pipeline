@@ -50,7 +50,7 @@ func TestGetOutputSteps(t *testing.T) {
 				Name:  "url",
 				Value: "https://github.com/tektoncd/pipeline.git",
 			}},
-			SecretParams: nil,
+			Secrets: nil,
 		},
 	}
 	tcs := []struct {
@@ -146,7 +146,7 @@ func TestGetInputSteps(t *testing.T) {
 				Name:  "url",
 				Value: "https://github.com/tektoncd/pipeline.git",
 			}},
-			SecretParams: nil,
+			Secrets: nil,
 		},
 	}
 	tcs := []struct {
@@ -289,7 +289,7 @@ func TestWrapSteps(t *testing.T) {
 				Name:  "url",
 				Value: "https://github.com/tektoncd/pipeline.git",
 			}},
-			SecretParams: nil,
+			Secrets: nil,
 		},
 	}
 	inputs := map[string]*resourcev1alpha1.PipelineResource{

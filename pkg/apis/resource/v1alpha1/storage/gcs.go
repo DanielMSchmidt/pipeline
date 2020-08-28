@@ -46,7 +46,7 @@ type GCSResource struct {
 	Location string                                `json:"location"`
 	TypeDir  bool                                  `json:"typeDir"`
 	//Secret holds a struct to indicate a field name and corresponding secret name to populate it
-	Secrets []resourcev1alpha1.SecretParam `json:"secrets"`
+	Secrets []resourcev1alpha1.Secret `json:"secrets"`
 
 	ShellImage  string `json:"-"`
 	GsutilImage string `json:"-"`
@@ -80,7 +80,7 @@ func NewGCSResource(name string, images pipeline.Images, r *resourcev1alpha1.Pip
 		Type:        r.Spec.Type,
 		Location:    location,
 		TypeDir:     dir,
-		Secrets:     r.Spec.SecretParams,
+		Secrets:     r.Spec.Secrets,
 		ShellImage:  images.ShellImage,
 		GsutilImage: images.GsutilImage,
 	}, nil
@@ -96,8 +96,8 @@ func (s GCSResource) GetType() resourcev1alpha1.PipelineResourceType {
 	return resourcev1alpha1.PipelineResourceTypeStorage
 }
 
-// GetSecretParams returns the resource secret params
-func (s *GCSResource) GetSecretParams() []resourcev1alpha1.SecretParam { return s.Secrets }
+// GetSecrets returns the resource secret params
+func (s *GCSResource) GetSecrets() []resourcev1alpha1.Secret { return s.Secrets }
 
 // Replacements is used for template replacement on an GCSResource inside of a Taskrun.
 func (s *GCSResource) Replacements() map[string]string {

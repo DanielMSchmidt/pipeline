@@ -192,9 +192,9 @@ func (rcc *ResolvedConditionCheck) ToTaskResourceBindings() []v1beta1.TaskResour
 			}
 		} else if r.Spec.Type != "" {
 			tr.ResourceSpec = &resourcev1alpha1.PipelineResourceSpec{
-				Type:         r.Spec.Type,
-				Params:       r.Spec.Params,
-				SecretParams: r.Spec.SecretParams,
+				Type:    r.Spec.Type,
+				Params:  r.Spec.Params,
+				Secrets: r.Spec.Secrets,
 			}
 		}
 		trb = append(trb, tr)

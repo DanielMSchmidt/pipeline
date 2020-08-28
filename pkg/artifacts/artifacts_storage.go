@@ -160,7 +160,7 @@ func NewArtifactBucketFromConfig(ctx context.Context, images pipeline.Images) *s
 
 	bucketConfig := config.FromContextOrDefaults(ctx).ArtifactBucket
 	c.Location = bucketConfig.Location
-	sp := resourcev1alpha1.SecretParam{}
+	sp := resourcev1alpha1.Secret{}
 	if bucketConfig.ServiceAccountSecretName != "" && bucketConfig.ServiceAccountSecretKey != "" {
 		sp.SecretName = bucketConfig.ServiceAccountSecretName
 		sp.SecretKey = bucketConfig.ServiceAccountSecretKey

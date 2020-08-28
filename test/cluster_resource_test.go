@@ -81,8 +81,8 @@ func getClusterResource(name, sname string) *v1alpha1.PipelineResource {
 		tb.PipelineResourceSpecParam("Url", "https://1.1.1.1"),
 		tb.PipelineResourceSpecParam("username", "test-user"),
 		tb.PipelineResourceSpecParam("password", "test-password"),
-		tb.PipelineResourceSpecSecretParam("cadata", sname, "cadatakey"),
-		tb.PipelineResourceSpecSecretParam("token", sname, "tokenkey"),
+		tb.PipelineResourceSpecSecret("cadata", sname, "cadatakey"),
+		tb.PipelineResourceSpecSecret("token", sname, "tokenkey"),
 	))
 }
 

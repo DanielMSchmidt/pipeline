@@ -47,7 +47,7 @@ type Resource struct {
 	// SCM provider (github or gitlab today). This will be guessed from URL if not set.
 	Provider string `json:"provider"`
 	// Secrets holds a struct to indicate a field name and corresponding secret name to populate it.
-	Secrets []resourcev1alpha1.SecretParam `json:"secrets"`
+	Secrets []resourcev1alpha1.Secret `json:"secrets"`
 
 	PRImage                   string `json:"-"`
 	InsecureSkipTLSVerify     bool   `json:"insecure-skip-tls-verify"`
@@ -62,7 +62,7 @@ func NewResource(name, prImage string, r *resourcev1alpha1.PipelineResource) (*R
 	prResource := Resource{
 		Name:                      name,
 		Type:                      r.Spec.Type,
-		Secrets:                   r.Spec.SecretParams,
+		Secrets:                   r.Spec.Secrets,
 		PRImage:                   prImage,
 		InsecureSkipTLSVerify:     false,
 		DisableStrictJSONComments: false,

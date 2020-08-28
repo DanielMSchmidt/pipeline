@@ -30,7 +30,7 @@ func (in *ArtifactBucket) DeepCopyInto(out *ArtifactBucket) {
 	*out = *in
 	if in.Secrets != nil {
 		in, out := &in.Secrets, &out.Secrets
-		*out = make([]v1alpha1.SecretParam, len(*in))
+		*out = make([]v1alpha1.Secret, len(*in))
 		copy(*out, *in)
 	}
 	return

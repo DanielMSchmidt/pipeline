@@ -67,7 +67,7 @@ func (rs *PipelineResourceSpec) Validate(ctx context.Context) *apis.FieldError {
 			}
 		}
 
-		for _, secret := range rs.SecretParams {
+		for _, secret := range rs.Secrets {
 			switch {
 			case strings.EqualFold(secret.FieldName, "Username"):
 				authFound = true
@@ -149,7 +149,7 @@ func validateURL(u, path string) *apis.FieldError {
 }
 
 func validatePullRequest(s *PipelineResourceSpec) *apis.FieldError {
-	for _, param := range s.SecretParams {
+	for _, param := range s.Secrets {
 		if param.FieldName != "authToken" {
 			return apis.ErrInvalidValue(fmt.Sprintf("invalid field name %q in secret parameter. Expected %q", param.FieldName, "authToken"), "spec.secrets.fieldName")
 		}

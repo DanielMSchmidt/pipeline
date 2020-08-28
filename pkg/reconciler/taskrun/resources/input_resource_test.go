@@ -165,7 +165,7 @@ func setUp() {
 				Name:  "Url",
 				Value: "http://10.10.10.10",
 			}},
-			SecretParams: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				FieldName:  "cadata",
 				SecretKey:  "cadatakey",
 				SecretName: "secret1",
@@ -248,7 +248,7 @@ func setUp() {
 				Name:  "Dir",
 				Value: "true",
 			}},
-			SecretParams: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				SecretKey:  "key.json",
 				SecretName: "secret-name",
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",

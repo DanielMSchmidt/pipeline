@@ -99,14 +99,16 @@ type PipelineResourceSpec struct {
 	// +optional
 	Description string               `json:"description,omitempty"`
 	Type        PipelineResourceType `json:"type"`
-	Params      []ResourceParam      `json:"params"`
+	// +listType=map
+	Params []ResourceParam `json:"params"`
 	// Secrets to fetch to populate some of resource fields
 	// +optional
-	SecretParams []SecretParam `json:"secrets,omitempty"`
+	// +listType=map
+	Secrets []Secret `json:"secrets,omitempty"`
 }
 
-// SecretParam indicates which secret can be used to populate a field of the resource
-type SecretParam struct {
+// Secret indicates which secret can be used to populate a field of the resource
+type Secret struct {
 	FieldName  string `json:"fieldName"`
 	SecretKey  string `json:"secretKey"`
 	SecretName string `json:"secretName"`
@@ -153,5 +155,6 @@ type PipelineResourceList struct {
 	metav1.TypeMeta `json:",inline"`
 	// +optional
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []PipelineResource `json:"items"`
+	// +listType=map
+	Items []PipelineResource `json:"items"`
 }

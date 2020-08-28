@@ -37,7 +37,7 @@ const secretVolumeMountPath = "/var/bucketsecret"
 type ArtifactBucket struct {
 	Name     string
 	Location string
-	Secrets  []resource.SecretParam
+	Secrets  []resource.Secret
 
 	ShellImage  string
 	GsutilImage string

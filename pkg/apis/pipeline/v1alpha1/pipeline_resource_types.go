@@ -60,8 +60,8 @@ type PipelineResource = resource.PipelineResource
 // PipelineResourceSpec defines  an individual resources used in the pipeline.
 type PipelineResourceSpec = resource.PipelineResourceSpec
 
-// SecretParam indicates which secret can be used to populate a field of the resource
-type SecretParam = resource.SecretParam
+// Secret indicates which secret can be used to populate a field of the resource
+type Secret = resource.Secret
 
 // ResourceParam declares a string value to use for the parameter called Name, and is used in
 // the specific context of PipelineResources.

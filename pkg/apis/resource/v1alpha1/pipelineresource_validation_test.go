@@ -149,7 +149,7 @@ func TestResourceValidation_Invalid(t *testing.T) {
 			res: &v1alpha1.PipelineResource{
 				Spec: v1alpha1.PipelineResourceSpec{
 					Type: v1alpha1.PipelineResourceTypePullRequest,
-					SecretParams: []v1alpha1.SecretParam{{
+					Secrets: []v1alpha1.Secret{{
 						FieldName: "INVALID_FIELD_NAME",
 					}},
 				},

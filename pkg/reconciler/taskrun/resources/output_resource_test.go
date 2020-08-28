@@ -78,7 +78,7 @@ func outputTestResourceSetup() {
 				Name:  "dir",
 				Value: "true",
 			}},
-			SecretParams: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				SecretKey:  "key.json",
 				SecretName: "sname",
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",

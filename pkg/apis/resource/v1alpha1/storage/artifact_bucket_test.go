@@ -37,7 +37,7 @@ var (
 
 	bucket = storage.ArtifactBucket{
 		Location: "gs://fake-bucket",
-		Secrets: []v1alpha1.SecretParam{{
+		Secrets: []v1alpha1.Secret{{
 			FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
 			SecretName: secretName,
 			SecretKey:  "serviceaccount",

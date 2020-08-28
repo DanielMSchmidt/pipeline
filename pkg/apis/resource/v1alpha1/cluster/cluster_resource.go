@@ -55,7 +55,7 @@ type Resource struct {
 	// ClientCertificateData contains PEM-encoded data from a client cert file for TLS.
 	ClientCertificateData []byte `json:"clientCertificateData"`
 	//Secrets holds a struct to indicate a field name and corresponding secret name to populate it
-	Secrets []resource.SecretParam `json:"secrets"`
+	Secrets []resource.Secret `json:"secrets"`
 
 	KubeconfigWriterImage string `json:"-"`
 	ShellImage            string `json:"-"`
@@ -106,7 +106,7 @@ func NewResource(name string, kubeconfigWriterImage, shellImage string, r *resou
 			}
 		}
 	}
-	clusterResource.Secrets = r.Spec.SecretParams
+	clusterResource.Secrets = r.Spec.Secrets
 
 	if len(clusterResource.CAData) == 0 {
 		clusterResource.Insecure = true

@@ -205,7 +205,7 @@ func TestInitializeArtifactStorage(t *testing.T) {
 		storagetype: "bucket",
 		expectedArtifactStorage: &storage.ArtifactBucket{
 			Location: "gs://fake-bucket",
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
 				SecretKey:  "sakey",
 				SecretName: "secret1",
@@ -271,7 +271,7 @@ func TestInitializeArtifactStorage(t *testing.T) {
 			Location:    "s3://fake-bucket",
 			ShellImage:  "busybox",
 			GsutilImage: "google/cloud-sdk",
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				FieldName:  "BOTO_CONFIG",
 				SecretKey:  "sakey",
 				SecretName: "secret1",
@@ -518,7 +518,7 @@ func TestGetArtifactStorageWithConfig(t *testing.T) {
 		},
 		expectedArtifactStorage: &storage.ArtifactBucket{
 			Location: "gs://fake-bucket",
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
 				SecretKey:  "sakey",
 				SecretName: "secret1",

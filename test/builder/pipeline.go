@@ -288,9 +288,9 @@ var (
 	// Deprecated: moved to internal/builder/v1alpha1
 	PipelineResourceSpecParam = v1alpha1.PipelineResourceSpecParam
 
-	// PipelineResourceSpecSecretParam adds a SecretParam, with specified fieldname, secretKey and secretName, to the PipelineResourceSpec.
+	// PipelineResourceSpecSecret adds a Secret, with specified fieldname, secretKey and secretName, to the PipelineResourceSpec.
 	// Deprecated: moved to internal/builder/v1alpha1
-	PipelineResourceSpecSecretParam = v1alpha1.PipelineResourceSpecSecretParam
+	PipelineResourceSpecSecret = v1alpha1.PipelineResourceSpecSecret
 
 	// PipelineWorkspaceDeclaration adds a Workspace to the workspaces listed in the pipeline spec.
 	// Deprecated: moved to internal/builder/v1alpha1

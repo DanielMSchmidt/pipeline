@@ -75,7 +75,7 @@ func NewBuildGCSResource(name string, images pipeline.Images, r *resource.Pipeli
 	if r.Spec.Type != resource.PipelineResourceTypeStorage {
 		return nil, fmt.Errorf("BuildGCSResource: Cannot create a BuildGCS resource from a %s Pipeline Resource", r.Spec.Type)
 	}
-	if r.Spec.SecretParams != nil {
+	if r.Spec.Secrets != nil {
 		return nil, fmt.Errorf("BuildGCSResource: %s cannot support artifacts on private bucket", r.Name)
 	}
 	var location string
@@ -116,8 +116,8 @@ func (s BuildGCSResource) GetType() resource.PipelineResourceType {
 	return resource.PipelineResourceTypeStorage
 }
 
-// GetSecretParams returns nil because it takes no secret params.
-func (s *BuildGCSResource) GetSecretParams() []resource.SecretParam { return nil }
+// GetSecrets returns nil because it takes no secret params.
+func (s *BuildGCSResource) GetSecrets() []resource.Secret { return nil }
 
 // Replacements returns the set of available replacements for this resource.
 func (s *BuildGCSResource) Replacements() map[string]string {

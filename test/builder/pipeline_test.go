@@ -344,7 +344,7 @@ func TestPipelineRunWithResourceSpec(t *testing.T) {
 						Name:  "url",
 						Value: "git",
 					}},
-					SecretParams: nil,
+					Secrets: nil,
 				},
 			}},
 		},

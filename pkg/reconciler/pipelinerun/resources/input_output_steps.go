@@ -43,9 +43,9 @@ func GetOutputSteps(outputs map[string]*resourcev1alpha1.PipelineResource, taskN
 			}
 		} else if outputResource.Spec.Type != "" {
 			taskOutputResource.ResourceSpec = &resourcev1alpha1.PipelineResourceSpec{
-				Type:         outputResource.Spec.Type,
-				Params:       outputResource.Spec.Params,
-				SecretParams: outputResource.Spec.SecretParams,
+				Type:    outputResource.Spec.Type,
+				Params:  outputResource.Spec.Params,
+				Secrets: outputResource.Spec.Secrets,
 			}
 		}
 		taskOutputResources = append(taskOutputResources, taskOutputResource)
@@ -73,9 +73,9 @@ func GetInputSteps(inputs map[string]*resourcev1alpha1.PipelineResource, inputRe
 			}
 		} else if inputResource.Spec.Type != "" {
 			taskInputResource.ResourceSpec = &resourcev1alpha1.PipelineResourceSpec{
-				Type:         inputResource.Spec.Type,
-				Params:       inputResource.Spec.Params,
-				SecretParams: inputResource.Spec.SecretParams,
+				Type:    inputResource.Spec.Type,
+				Params:  inputResource.Spec.Params,
+				Secrets: inputResource.Spec.Secrets,
 			}
 		}
 

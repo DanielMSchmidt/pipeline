@@ -31,7 +31,7 @@ import (
 // secrets that are usually needed for storage PipelineResources.
 type PipelineStorageResourceInterface interface {
 	v1beta1.PipelineResourceInterface
-	GetSecretParams() []resource.SecretParam
+	GetSecrets() []resource.Secret
 }
 
 // NewResource returns an instance of the requested storage subtype, which can be used
@@ -65,8 +65,8 @@ func getStorageVolumeSpec(s PipelineStorageResourceInterface, spec v1beta1.TaskS
 	}
 
 	// Map holds list of secrets that are mounted as volumes
-	for _, secretParam := range s.GetSecretParams() {
-		volName := fmt.Sprintf("volume-%s-%s", s.GetName(), secretParam.SecretName)
+	for _, Secret := range s.GetSecrets() {
+		volName := fmt.Sprintf("volume-%s-%s", s.GetName(), Secret.SecretName)
 		if _, ok := mountedSecrets[volName]; ok {
 			// There is already a volume mounted with this name
 			continue
@@ -76,7 +76,7 @@ func getStorageVolumeSpec(s PipelineStorageResourceInterface, spec v1beta1.TaskS
 			Name: volName,
 			VolumeSource: corev1.VolumeSource{
 				Secret: &corev1.SecretVolumeSource{
-					SecretName: secretParam.SecretName,
+					SecretName: Secret.SecretName,
 				},
 			},
 		}

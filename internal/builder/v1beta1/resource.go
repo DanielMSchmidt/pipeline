@@ -78,10 +78,10 @@ func PipelineResourceSpecParam(name, value string) PipelineResourceSpecOp {
 	}
 }
 
-// PipelineResourceSpecSecretParam adds a SecretParam, with specified fieldname, secretKey and secretName, to the PipelineResourceSpec.
-func PipelineResourceSpecSecretParam(fieldname, secretName, secretKey string) PipelineResourceSpecOp {
+// PipelineResourceSpecSecret adds a Secret, with specified fieldname, secretKey and secretName, to the PipelineResourceSpec.
+func PipelineResourceSpecSecret(fieldname, secretName, secretKey string) PipelineResourceSpecOp {
 	return func(spec *resource.PipelineResourceSpec) {
-		spec.SecretParams = append(spec.SecretParams, resource.SecretParam{
+		spec.Secrets = append(spec.Secrets, resource.Secret{
 			FieldName:  fieldname,
 			SecretKey:  secretKey,
 			SecretName: secretName,

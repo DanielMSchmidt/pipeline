@@ -126,14 +126,14 @@ func TestNewClusterResource(t *testing.T) {
 		resource: tb.PipelineResource("test-resource", tb.PipelineResourceSpec(
 			resourcev1alpha1.PipelineResourceTypeCluster,
 			tb.PipelineResourceSpecParam("url", "http://10.10.10.10"),
-			tb.PipelineResourceSpecSecretParam("cadata", "secret1", "cadatakey"),
-			tb.PipelineResourceSpecSecretParam("token", "secret1", "tokenkey"),
+			tb.PipelineResourceSpecSecret("cadata", "secret1", "cadatakey"),
+			tb.PipelineResourceSpecSecret("token", "secret1", "tokenkey"),
 		)),
 		want: &cluster.Resource{
 			Name: "test-resource",
 			Type: resourcev1alpha1.PipelineResourceTypeCluster,
 			URL:  "http://10.10.10.10",
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				FieldName:  "cadata",
 				SecretKey:  "cadatakey",
 				SecretName: "secret1",
@@ -164,7 +164,7 @@ func TestClusterResource_GetInputTaskModifier(t *testing.T) {
 		Name: "test-cluster-resource",
 		Type: resourcev1alpha1.PipelineResourceTypeCluster,
 		URL:  "http://10.10.10.10",
-		Secrets: []resourcev1alpha1.SecretParam{{
+		Secrets: []resourcev1alpha1.Secret{{
 			FieldName:  "cadata",
 			SecretKey:  "cadatakey",
 			SecretName: "secret1",

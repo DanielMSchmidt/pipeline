@@ -36,7 +36,7 @@ func TestPullRequest_NewResource(t *testing.T) {
 		resourcev1alpha1.PipelineResourceTypePullRequest,
 		tb.PipelineResourceSpecParam("url", url),
 		tb.PipelineResourceSpecParam("provider", "github"),
-		tb.PipelineResourceSpecSecretParam("authToken", "test-secret-key", "test-secret-name"),
+		tb.PipelineResourceSpecSecret("authToken", "test-secret-key", "test-secret-name"),
 		tb.PipelineResourceSpecParam("disable-strict-json-comments", "true"),
 	))
 	got, err := pullrequest.NewResource("test-resource", "override-with-pr:latest", pr)
@@ -49,7 +49,7 @@ func TestPullRequest_NewResource(t *testing.T) {
 		Type:                      resourcev1alpha1.PipelineResourceTypePullRequest,
 		URL:                       url,
 		Provider:                  "github",
-		Secrets:                   pr.Spec.SecretParams,
+		Secrets:                   pr.Spec.Secrets,
 		PRImage:                   "override-with-pr:latest",
 		InsecureSkipTLSVerify:     false,
 		DisableStrictJSONComments: true,
@@ -94,7 +94,7 @@ func containerTestCases(mode string) []testcase {
 			Name:                  "creds",
 			URL:                   "https://example.com",
 			InsecureSkipTLSVerify: false,
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				FieldName:  "authToken",
 				SecretName: "github-creds",
 				SecretKey:  "token",

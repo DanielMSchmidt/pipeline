@@ -85,14 +85,14 @@ func TestValidNewGCSResource(t *testing.T) {
 		tb.PipelineResourceSpecParam("Location", "gs://fake-bucket"),
 		tb.PipelineResourceSpecParam("type", "gcs"),
 		tb.PipelineResourceSpecParam("dir", "anything"),
-		tb.PipelineResourceSpecSecretParam("GOOGLE_APPLICATION_CREDENTIALS", "secretName", "secretKey"),
+		tb.PipelineResourceSpecSecret("GOOGLE_APPLICATION_CREDENTIALS", "secretName", "secretKey"),
 	))
 	expectedGCSResource := &storage.GCSResource{
 		Name:     "test-resource",
 		Location: "gs://fake-bucket",
 		Type:     resourcev1alpha1.PipelineResourceTypeStorage,
 		TypeDir:  true,
-		Secrets: []resourcev1alpha1.SecretParam{{
+		Secrets: []resourcev1alpha1.Secret{{
 			SecretName: "secretName",
 			SecretKey:  "secretKey",
 			FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
@@ -131,18 +131,18 @@ func TestGetParams(t *testing.T) {
 		resourcev1alpha1.PipelineResourceTypeStorage,
 		tb.PipelineResourceSpecParam("Location", "gcs://some-bucket.zip"),
 		tb.PipelineResourceSpecParam("type", "gcs"),
-		tb.PipelineResourceSpecSecretParam("test-field-name", "test-secret-name", "test-secret-key"),
+		tb.PipelineResourceSpecSecret("test-field-name", "test-secret-name", "test-secret-key"),
 	))
 	gcsResource, err := storage.NewResource("test-resource", images, pr)
 	if err != nil {
 		t.Fatalf("Error creating storage resource: %s", err.Error())
 	}
-	expectedSp := []resourcev1alpha1.SecretParam{{
+	expectedSp := []resourcev1alpha1.Secret{{
 		SecretKey:  "test-secret-key",
 		SecretName: "test-secret-name",
 		FieldName:  "test-field-name",
 	}}
-	if d := cmp.Diff(gcsResource.GetSecretParams(), expectedSp); d != "" {
+	if d := cmp.Diff(gcsResource.GetSecrets(), expectedSp); d != "" {
 		t.Errorf("Error mismatch on storage secret params %s", diff.PrintWantGot(d))
 	}
 }
@@ -161,7 +161,7 @@ func TestGetInputSteps(t *testing.T) {
 			Name:     "gcs-valid",
 			Location: "gs://some-bucket",
 			TypeDir:  true,
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				SecretName: "secretName",
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
 				SecretKey:  "key.json",
@@ -199,7 +199,7 @@ gsutil rsync -d -r gs://some-bucket /workspace
 		gcsResource: &storage.GCSResource{
 			Name:     "gcs-valid",
 			Location: "gs://some-bucket",
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				SecretName: "secretName",
 				FieldName:  "fieldName",
 				SecretKey:  "key.json",
@@ -264,7 +264,7 @@ func TestGetOutputTaskModifier(t *testing.T) {
 			Name:     "gcs-valid",
 			Location: "gs://some-bucket",
 			TypeDir:  true,
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				SecretName: "secretName",
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
 				SecretKey:  "key.json",
@@ -287,7 +287,7 @@ func TestGetOutputTaskModifier(t *testing.T) {
 		gcsResource: &storage.GCSResource{
 			Name:     "gcs-valid",
 			Location: "gs://some-bucket",
-			Secrets: []resourcev1alpha1.SecretParam{{
+			Secrets: []resourcev1alpha1.Secret{{
 				SecretName: "secretName",
 				FieldName:  "GOOGLE_APPLICATION_CREDENTIALS",
 				SecretKey:  "key.json",

@@ -25,7 +25,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 )
 
-func getSecretEnvVarsAndVolumeMounts(name, mountPath string, secrets []resource.SecretParam) ([]corev1.EnvVar, []corev1.VolumeMount) {
+func getSecretEnvVarsAndVolumeMounts(name, mountPath string, secrets []resource.Secret) ([]corev1.EnvVar, []corev1.VolumeMount) {
 	mountPaths := make(map[string]struct{})
 	var (
 		envVars           []corev1.EnvVar
@@ -37,19 +37,19 @@ func getSecretEnvVarsAndVolumeMounts(name, mountPath string, secrets []resource.
 		"BOTO_CONFIG":                    false,
 	}
 
-	for _, secretParam := range secrets {
-		if authVar, ok := allowedFields[secretParam.FieldName]; ok && !authVar {
-			allowedFields[secretParam.FieldName] = true
-			mountPath := filepath.Join(mountPath, secretParam.SecretName)
+	for _, Secret := range secrets {
+		if authVar, ok := allowedFields[Secret.FieldName]; ok && !authVar {
+			allowedFields[Secret.FieldName] = true
+			mountPath := filepath.Join(mountPath, Secret.SecretName)
 
 			envVars = append(envVars, corev1.EnvVar{
-				Name:  strings.ToUpper(secretParam.FieldName),
-				Value: filepath.Join(mountPath, secretParam.SecretKey),
+				Name:  strings.ToUpper(Secret.FieldName),
+				Value: filepath.Join(mountPath, Secret.SecretKey),
 			})
 
 			if _, ok := mountPaths[mountPath]; !ok {
 				secretVolumeMount = append(secretVolumeMount, corev1.VolumeMount{
-					Name:      fmt.Sprintf("volume-%s-%s", name, secretParam.SecretName),
+					Name:      fmt.Sprintf("volume-%s-%s", name, Secret.SecretName),
 					MountPath: mountPath,
 				})
 				mountPaths[mountPath] = struct{}{}

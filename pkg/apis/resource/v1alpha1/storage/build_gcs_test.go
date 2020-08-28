@@ -91,7 +91,7 @@ func TestBuildGCSResource_Invalid(t *testing.T) {
 			tb.PipelineResourceSpecParam("Location", "gs://test"),
 			tb.PipelineResourceSpecParam("type", "build-gcs"),
 			tb.PipelineResourceSpecParam("ArtifactType", "invalid-type"),
-			tb.PipelineResourceSpecSecretParam("secretKey", "secretName", "GOOGLE_APPLICATION_CREDENTIALS"),
+			tb.PipelineResourceSpecSecret("secretKey", "secretName", "GOOGLE_APPLICATION_CREDENTIALS"),
 		)),
 	}} {
 		t.Run(tc.name, func(t *testing.T) {
